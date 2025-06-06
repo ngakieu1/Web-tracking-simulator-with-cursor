@@ -2,6 +2,7 @@
 This project is a web-based eye tracking simulator using mouse cursor as a proxy for gaze data. It allows researchers or educators to visualize and analyze user interaction on a webpage through heatmaps, scanpaths, and AOI (Area of Interest) statistics.
 
 🔐 Features
+
 ✅ User Authentication
 Users can sign up and log in to start tracking sessions.
 
