@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - {{ username }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="navbar">
+        <div class="container">
+            <h1 class="logo">GazeGraph</h1>
+            <div class="user-info">
+                <span>Welcome, {{ username }}!</span>
+                <a href="{{ url_for('logout') }}" class="btn btn-logout">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard-container">
+        <form method="POST" action="{{ url_for('all_users') }}">
+        <button type="submit" name="barchart_all_user">Bar chart for all users</button>
+    </form>
+        <!-- Search and Load Data Section -->
+        <section class="card data-section">
+            <h3>Dữ liệu: {{ username }}</h3>
+            {% if searched_data %}
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Gaze X</th>
+                                <th>Gaze Y</th>
+                                <th>Fixation Duration</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in searched_data %}
+                                <tr>
+                                    <td>{{ row.gaze_x }}</td>
+                                    <td>{{ row.gaze_y }}</td>
+                                    <td>{{ row.fixation_duration or "N/A" }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <p class="no-data">No data found for this user.</p>
+            {% endif %}
+        </section>
+
+        <!-- Heatmap Section -->
+        {% if heatmap_url %}
+        <section class="card heatmap-section">
+            <h2>Bản đồ nhiệt</h2>
+            <img src="{{ heatmap_url }}" alt="Heatmap" class="heatmap-img" style="width: 100%; height: auto; display: block;">
+        </section>
+        {% endif %}
+
+        <!-- Scanpath Section -->
+        <section class="card scan-path-section">
+            {% if scanpath_url %}
+                <h3>Scanpath</h3>
+                <img src="{{ scanpath_url }}" alt="Scanpath Image" style="max-width: 100%; height: auto;" class="heatmap-img">
+            {% endif %}
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 GazeGraph. All rights reserved.</p>
+    </footer>
+</body>
+</html>

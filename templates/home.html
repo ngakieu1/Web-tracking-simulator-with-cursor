@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to GazeGraph</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <h1 class="logo">GazeGraph</h1>
+            <nav>
+                <a href="{{ url_for('home') }}" class="btn">Home |</a>
+                <a href="{{ url_for('register') }}" class="btn">Register |</a>
+                <a href="{{ url_for('login') }}" class="btn btn-primary">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="hero-section">
+        <div class="container hero-content">
+            <h2>Welcome to GazeGraph</h2>
+            <p>Your gateway to eye-tracking insights and visualization!</p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 GazeGraph. All rights reserved.</p>
+    </footer>
+</body>
+</html>
